@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Maxim\ModularBundle\Entity\Server" table="module_server" repository-class="Maxim\ModularBundle\Entity\ServerRepository">
+        <indexes>
+            <index name="IDX_SERVER_ID" columns="id"/>
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="name"    type="string"   column="name" />
+        <field name="ip"      type="string"   column="ip"     nullable="true"/>
+        <field name="port"    type="integer"  column="port"   nullable="true"/>
+        <field name="hub"     type="boolean"  column="is_hub" />
+
+        <field name="createdAt"    type="datetime"   column="created_at" nullable="true"/>
+        <field name="updatedAt"    type="datetime"   column="updated_at" nullable="true"/>
+
+        <many-to-one field="user" target-entity="User" inversed-by="servers" join-column="user">
+            <join-column name="user_id" referenced-column-name="id"/>
+        </many-to-one>
+
+        <many-to-one field="parent" target-entity="Server" inversed-by="subServers">
+            <join-columns>
+                <join-column name="parent_id" referenced-column-name="id"/>
+            </join-columns>
+        </many-to-one>
+
+        <one-to-many target-entity="Server" mapped-by="parent" field="subServers"/>
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="prePersist" />
+            <lifecycle-callback type="preUpdate" method="preUpdate" />
+        </lifecycle-callbacks>
+    </entity>
+
+</doctrine-mapping>
+

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>{% block title %}Modul.ar - Sixyce{% endblock %}</title>
+
+    <!-- JQUERY -->
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    {% block head %}
+
+        {% block stylesheets %}
+            {% stylesheets
+                'bundles/maximmodular/css/alerts.scss*'
+                'bundles/maximmodular/css/buttons.scss*'
+                'bundles/maximmodular/css/font-definitions.scss*'
+                'bundles/maximmodular/css/forms.scss*'
+                'bundles/maximmodular/css/hover-effects.scss*'
+                'bundles/maximmodular/css/labels.scss*'
+                'bundles/maximmodular/css/menus.scss*'
+                'bundles/maximmodular/css/style.scss*'
+                'bundles/maximmodular/css/plugins/*'
+                'bundles/maximmodular/css/modules/**'
+                filter="compass, cssrewrite" %}
+                <link rel="stylesheet" href="{{ asset_url }}"/>
+            {% endstylesheets %}
+
+            {% stylesheets
+                'bundles/maximmodular/fonts/iconfont/css/fontello.css'
+                'bundles/maximmodular/fonts/iconfont/css/animation.css'
+                filter="cssrewrite" %}
+                <link rel="stylesheet" href="{{ asset_url }}"/>
+            {% endstylesheets %}
+
+        {% endblock %}
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav class="wrapper">
+        <div id="logo" class="logo">
+            <h1 class="logo">MODUL.AR</h1>
+            <div class="logo-container-border"></div>
+        </div>
+        <ul id="navigation">
+            <li><a href="{{ path('home') }}">Home</a></li>
+            <li><a href="#">Purchase</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            {% if not app.user %}
+            <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+            {% else %}
+                <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+
+<section id="content">
+    <div id="intro-container">
+        <div class="wrapper">
+            <div class="left">
+                <h2>
+                    Newest Minecraft CMS Available for SALE!
+                    Running on Version 2.33 BETA.
+                </h2>
+                <a class="btn btn-browse-products" href="/signup">Sign up</a>
+            </div>
+        </div>
+    </div>
+
+    {% block content %}{{ block('fos_user_content') }}{% endblock %}
+
+</section>
+
+<footer>
+    <div class="wrapper">
+        <div class="brand-studio">
+            <img src="{{ asset('bundles/maximmodular/images/brand-logo.png') }}" alt="Image of Sixyce studios" />
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ path('home') }}">Home</a></li>
+                <li><a href="#">Purchase</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                {% if not app.user %}
+                <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>
+                {% else %}
+                    <li><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+{% block javascripts %}
+    {% javascripts
+    'bundles/maximmodular/javascripts/plugins/backstretch/backstretch.min.js'
+    'bundles/maximmodular/javascripts/plugins/totem/jquery.totemticker.min.js'
+    output='js/compiled/main.js' %}
+    <script src="{{ asset_url }}"></script>
+
+    {% endjavascripts %}
+
+    <script>
+
+        var backgrounds = ["{{ asset('bundles/maximmodular/images/bg.jpg') }}", "{{ asset('bundles/maximmodular/images/bg1.jpg') }}", "{{ asset('bundles/maximmodular/images/bg2.jpg') }}"];
+        var containers = {
+            "intro-container": {
+                "element": $('#intro-container'),
+                "configs": {
+                    "fit-screen": false,
+                    "css": {
+                        "background-position-y": '-365px'
+                    }
+                }
+            },
+            "monitor-slide": {
+                "element": $('#monitor-slide'),
+                "configs": {
+                    "fit-screen": true
+                }
+            }
+        };
+        var currentBg = 0;
+
+        (function setBackground() {
+
+            $.each(containers, function(key, value){
+
+                value["element"].css({
+                    "background": "url(" + backgrounds[currentBg] + ")",
+                    "-webkit-transition": "background 1s ease-in",
+                    "-moz-transition": "background 1s ease-in",
+                    "-o-transition": "background 1s ease-in",
+                    "-ms-transition": "background 1s ease-in",
+                    "transition": "background 1s ease-in"
+                });
+
+                if(value["configs"]["css"] != undefined) {
+                    value["element"].css(value["configs"]["css"]);
+                }
+
+                if(value["configs"]["fit-screen"] != undefined) {
+                    value["element"].css({"background-size": "cover"});
+                }
+            });
+
+
+            if(currentBg == backgrounds.length - 1) {
+                currentBg = 0;
+            } else {
+                currentBg++;
+            }
+
+            setTimeout(setBackground, 3000);
+        })();
+
+        $(function() {
+            $('#testimonials').totemticker({
+                row_height: '65px'
+            });
+        });
+    </script>
+
+    {% block script_tags %}{% endblock %}
+{% endblock %}
+</body>
+</html>

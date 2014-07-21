@@ -1,0 +1,14 @@
+{% extends "MaximModularBundle:Layout:page.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Register - Check email{% endblock title %}
+{% block page_title %}Register - Check email{% endblock %}
+
+{% block page_content %}
+    {% block fos_user_content %}
+        <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+    {% endblock fos_user_content %}
+
+{% endblock %}
+

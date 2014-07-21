@@ -1,0 +1,43 @@
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid rgb(213, 213, 213);
+    background: white;
+    cursor:pointer;
+    border-radius: 5px;
+}
+.btn:hover {
+    background-color:#00a3ff;
+    color:#fff;
+}
+.btn:focus {
+    outline: 0;
+}
+
+.btn-red {
+    background-color:red;
+    color:white;
+}
+.btn-green {
+    background-color:#5cb85c;
+    color:white;
+    border-color: #86A080;
+}
+.btn-green:hover {
+    background-color:#449d44;
+}
+.btn-remove {
+    border-radius:3px;
+}
+
+.btn-browse-products {
+    background-color: rgb(0, 163, 255);
+    border-radius: 3px;
+    color: white;
+    padding:10px 20px;
+    border:3px solid rgb(0, 163, 255);
+}
+.btn-browse-products:hover {
+    background-color: rgba(255, 255, 255, 0.40);
+    text-shadow:1px 1px black;
+}

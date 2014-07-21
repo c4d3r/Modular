@@ -1,0 +1,58 @@
+/* line 1, assAB8D.tmp.scss */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  border: 1px solid #d5d5d5;
+  background: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* line 9, assAB8D.tmp.scss */
+.btn:hover {
+  background-color: #00a3ff;
+  color: #fff;
+}
+
+/* line 13, assAB8D.tmp.scss */
+.btn:focus {
+  outline: 0;
+}
+
+/* line 17, assAB8D.tmp.scss */
+.btn-red {
+  background-color: red;
+  color: white;
+}
+
+/* line 21, assAB8D.tmp.scss */
+.btn-green {
+  background-color: #5cb85c;
+  color: white;
+  border-color: #86A080;
+}
+
+/* line 26, assAB8D.tmp.scss */
+.btn-green:hover {
+  background-color: #449d44;
+}
+
+/* line 29, assAB8D.tmp.scss */
+.btn-remove {
+  border-radius: 3px;
+}
+
+/* line 33, assAB8D.tmp.scss */
+.btn-browse-products {
+  background-color: #00a3ff;
+  border-radius: 3px;
+  color: white;
+  padding: 10px 20px;
+  border: 3px solid #00a3ff;
+}
+
+/* line 40, assAB8D.tmp.scss */
+.btn-browse-products:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  text-shadow: 1px 1px black;
+}

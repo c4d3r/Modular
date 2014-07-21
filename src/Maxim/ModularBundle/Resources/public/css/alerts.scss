@@ -1,0 +1,28 @@
+.alert {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: white;
+    color:black;
+}
+.alert-success {
+    background-color: rgb(101, 185, 85);
+    box-shadow: 0px 2px 0 0px rgb(63, 148, 84);
+    color: white;
+}
+.alert-error, .alert-errors, .alert-danger {
+    background-color: rgb(185, 93, 85);
+    box-shadow: 0px 2px 0 0px rgb(148, 63, 107);
+    color: white;
+}
+.alert-info {
+    background-color: rgb(85, 177, 185);
+    box-shadow: 0px 2px 0 0px rgb(63, 131, 148);
+    color: white;
+}
+.alert-warning {
+    background-color: rgb(185, 185, 85);
+    box-shadow: 0px 2px 0 0px rgb(148, 148, 63);
+    color: white;
+}
+

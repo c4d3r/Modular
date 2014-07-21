@@ -1,0 +1,25 @@
+home:
+    path: /
+    defaults: { _controller: MaximModularBundle:Default:index }
+
+# servers
+server_add:
+    path: /server/add
+    defaults: { _controller: MaximModularBundle:Server:add }
+server_hub_add:
+    path: /server/add/{parentId}
+    defaults: { _controller: MaximModularBundle:Server:add }
+server_hub_add_placeholder:
+    path: /server/add
+
+server_remove:
+    path: /server/remove/{serverId}
+    defaults: { _controller: MaximModularBundle:Server:remove }
+server_remove_placeholder:
+    path: /server/remove
+
+server_edit:
+    path: /server/edit/{serverId}
+    defaults: { _controller: MaximModularBundle:Server:edit }
+server_edit_placeholder:
+    path: /server/edit

@@ -1,0 +1,14 @@
+/* line 1, ass448A.tmp.scss */
+.label {
+  background: transparent;
+  padding: 2px 5px;
+  box-sizing: border-box;
+  font-size: 10pt;
+  border-radius: 3px;
+}
+
+/* line 8, ass448A.tmp.scss */
+.label-blue {
+  background-color: #00a3ff;
+  color: white;
+}

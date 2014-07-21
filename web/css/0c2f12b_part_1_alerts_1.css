@@ -1,0 +1,36 @@
+/* line 1, ass38CE.tmp.scss */
+.alert {
+  display: block;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: white;
+  color: black;
+}
+
+/* line 8, ass38CE.tmp.scss */
+.alert-success {
+  background-color: #65b955;
+  box-shadow: 0px 2px 0 0px #3f9454;
+  color: white;
+}
+
+/* line 13, ass38CE.tmp.scss */
+.alert-error, .alert-errors, .alert-danger {
+  background-color: #b95d55;
+  box-shadow: 0px 2px 0 0px #943f6b;
+  color: white;
+}
+
+/* line 18, ass38CE.tmp.scss */
+.alert-info {
+  background-color: #55b1b9;
+  box-shadow: 0px 2px 0 0px #3f8394;
+  color: white;
+}
+
+/* line 23, ass38CE.tmp.scss */
+.alert-warning {
+  background-color: #b9b955;
+  box-shadow: 0px 2px 0 0px #94943f;
+  color: white;
+}

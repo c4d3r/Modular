@@ -1,0 +1,182 @@
+{% extends 'MaximModularBundle:Layout:page.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/javascripts/modules/onlineUsers/ServerComponent.js" type="text/javascript"></script>
+    <script src="/javascripts/modules/onlineUsers/HubComposite.js" type="text/javascript"></script>
+    <script src="/javascripts/modules/onlineUsers/Server.js" type="text/javascript"></script>
+    <script src="/javascripts/modules/onlineUsers/App.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block title %}Profile{% endblock title %}
+{% block page_title %}Profile{% endblock page_title %}
+
+{% block page_content %}
+    <h2>Servers</h2>
+    <div id="ou-servers">
+        <ul>
+            {% for s in servers %}
+                <li class="ou-server" id="server-{{ s.id }}">
+                    <div class="ou-server-content">
+
+                        <ul class="ou-server-actions">
+                            {% if not s.ip and not s.port %}
+                                <li><button class="btn btn-ou-server-add" value="{{ s.id }}"><i class="icon-plus"></i></button></li>
+                            {% endif %}
+                            <li><button class="btn btn-ou-server-edit" value="{{ s.id }}"><i class="icon-pencil"></i></button></li>
+                            <li><button class="btn btn-ou-server-remove" value="{{ s.id }}" data-id="{{ s.id }}"><i class="icon-minus-circle"></i></button></li>
+                        </ul>
+
+                        <h3 class="ou-server-name">{{ s.name }} {% if s.ip and s.port %}({{ s.ip }}:{{ s.port }}){% endif %}</h3>
+
+
+                        <div class="ou-form-edit" data-val="{{ s.id }}"></div>
+
+                        {% if not s.ip and not s.port %}
+                            <div class="ou-form-add" data-val="{{ s.id }}"></div>
+                        {% endif %}
+
+                    </div>
+
+                    {% if s.isHub %}
+                        <ul class="ou-subservers">
+                            {% for s2 in s.subServers %}
+                                <li class="ou-server" id="server-{{ s2.id }}">
+                                    <div class="ou-server-content">
+                                        <h3 class="ou-server-name">{{ s2.name }} {% if s2.ip and s2.port %}({{ s2.ip }}:{{ s2.port }}){% endif %}</h3>
+
+                                        <ul class="ou-server-actions">
+                                            {% if not s2.ip and not s2.port %}
+                                                <li><button class="btn btn-ou-server-add" value="{{ s2.id }}"><i class="icon-plus"></i></button></li>
+                                            {% endif %}
+                                            <li><button class="btn btn-ou-server-remove" value="{{ s.id }}/{{ s2.id }}" data-id="{{ s2.id }}"><i class="icon-minus-circle"></i></button></li>
+                                            <!--<li><button class="btn btn-ou-server-edit" value="{{ s2.id }}"><i class="icon-pencil"></i></button></li>-->
+                                        </ul>
+
+                                        <div class="ou-form-edit" data-val="{{ s2.id }}"></div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <h2>Add a server</h2>
+    <div id="ou-server-add">
+
+        {{ render(controller('MaximModularBundle:Server:add')) }}
+
+    </div>
+
+
+    <h2>Preview</h2>
+    <div id="servers"><div>
+
+    <script type="text/javascript">
+        app = new App("http://localhost:3000/53c1823d5f2a996838d9075c");
+    </script>
+{% endblock page_content %}
+
+{% block script_tags %}
+    <script>
+
+        $('#hub').bind('click', function(){
+            $('#ou-server-nohub').slideToggle();
+        });
+
+        $('.btn-ou-server-remove').on('click', function() {
+
+            var _btn = $(this);
+            _btn.find('i').removeClass('icon-minus-circle').addClass('icon-spin1 animate-spin');
+
+            console.log('/server/' + _btn.val() + '/remove');
+
+            $.ajax({
+                url: "{{ path('server_remove_placeholder') }}/" + _btn.val(),
+                type: 'DELETE',
+                success: function (data) {
+                    if(data.success) {
+                        console.log(_btn.parents("li.ou-server"));
+                        _btn.find('i').removeClass('icon-spin1 animate-spin').addClass('icon-minus-circle');
+                        $('#server-' + _btn.attr("data-id")).slideUp();
+                    }
+                },
+                error: function(data) {
+                    console.log(data);
+                }
+            });
+        });
+
+        $('.btn-ou-server-edit').on('click', function() {
+
+            var element =  $('#server-' + $(this).val() + ' > .ou-server-content > .ou-form-edit');
+
+            if(element.html() == "") {
+
+                element.html('<div style="text-align:center;"><i class="icon-spin1 animate-spin"></i></div>');
+
+                element.slideDown();
+
+                $.ajax({
+                    url: "{{ path('server_edit_placeholder') }}" + "/" + $(this).val(),
+                    type: 'GET',
+                    success: function(form) {
+                        $(form).css("display", "none");
+                        element.html(form);
+                        element.slideDown();
+                    }
+                });
+            } else {
+                element.slideToggle();
+            }
+        });
+
+        $('.btn-ou-server-add').on('click', function() {
+
+            var element =  $('#server-' + $(this).val() + ' > .ou-server-content > .ou-form-add');
+
+            if(element.html() == "") {
+
+                element.html('<div style="text-align:center;"><i class="icon-spin1 animate-spin"></i></div>');
+
+                element.slideDown();
+
+                $.ajax({
+                    url: "{{ path('server_hub_add_placeholder') }}" + "/" + $(this).val(),
+                    type: 'GET',
+                    success: function(form) {
+                        $(form).css("display", "none");
+                        element.html(form);
+                        element.slideDown();
+                    }
+                });
+            } else {
+                element.slideToggle();
+            }
+        });
+
+        $('.ou-server > .ou-server-content > form.ou-server-edit').on('submit', function(event){
+            event.preventDefault();
+            var _btn = $(this).find('[type=submit]')[0];
+            _btn = $(_btn);
+            var _btnC = _btn.clone();
+
+            $(_btn).html('<i class="icon-spin1 animate-spin"></i>');
+
+            //console.log($(this).serialize());
+            $.ajax({
+                url: $(this).attr("action"),
+                type: "POST",
+                data: $(this).serialize(),
+                success: function(data) {
+                    if(data.success) {
+                        _btn.html(_btnC.html());
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

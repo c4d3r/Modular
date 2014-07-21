@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="Maxim\ModularBundle\Entity\User" table="user" repository-class="Maxim\ModularBundle\Entity\UserRepository">
+        <indexes>
+            <index name="IDX_USER_ID" columns="id"/>
+        </indexes>
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="createdAt"    type="datetime"   column="created_at" />
+        <field name="updatedAt"    type="datetime"   column="updated_at" />
+
+        <!-- security fields -->
+        <field name="lastIp"             type="string"      column="last_ip"        length="45" nullable="true" />
+
+        <many-to-many field="groups" target-entity="Group" inversed-by="users">
+            <join-table name="user_group">
+                <join-columns>
+                    <join-column name="user_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="group_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <many-to-many field="ownedProducts" target-entity="Product" inversed-by="users">
+            <join-table name="user_product">
+                <join-columns>
+                    <join-column name="user_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="product_id" referenced-column-name="id"/>
+                </inverse-join-columns>
+            </join-table>
+        </many-to-many>
+
+        <one-to-many target-entity="Server" mapped-by="user" field="servers" />
+
+        <lifecycle-callbacks>
+            <lifecycle-callback type="prePersist" method="prePersist" />
+            <lifecycle-callback type="preUpdate" method="preUpdate" />
+        </lifecycle-callbacks>
+    </entity>
+
+</doctrine-mapping>
+

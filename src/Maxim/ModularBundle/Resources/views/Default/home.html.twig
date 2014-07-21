@@ -1,0 +1,42 @@
+{% extends 'MaximModularBundle:Layout:page.html.twig' %}
+
+{% block page_content %}
+    <div id="testimonial">
+
+        <div id="testimonials" class="left">
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+            <blockquote>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <small>Someone famous <cite title="Source Title">Source Title</cite></small>
+            </blockquote>
+        </div>
+
+        <div id="monitor-ad" class="right">
+            <img src="{{ asset('bundles/maximmodular/images/monitor.png') }}"/>
+            <div id="monitor-slide"></div>
+        </div>
+    </div>
+
+    <div id="products">
+
+        <div class="grid">
+            <figure class="effect-chico">
+                <img src="{{ asset('bundles/maximmodular/images/15.jpg') }}" alt="img15"/>
+                <figcaption>
+                    <h2>Silly <span>Chico</span></h2>
+                    <p>Chico's main fear was missing the morning bus.</p>
+                    <a href="#">View more</a>
+                </figcaption>
+            </figure>
+        </div>
+
+    </div>
+
+{% endblock %}

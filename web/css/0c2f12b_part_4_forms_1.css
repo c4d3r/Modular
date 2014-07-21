@@ -1,0 +1,42 @@
+/* line 2, ass402D.tmp.scss */
+form fieldset {
+  margin: 0;
+  border: none;
+}
+/* line 7, ass402D.tmp.scss */
+form .form-group, form div {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+/* line 13, ass402D.tmp.scss */
+form .form-group label, form div label {
+  display: block;
+  font-size: 11pt;
+}
+/* line 18, ass402D.tmp.scss */
+form .form-group input, form div input {
+  display: block;
+  width: 100%;
+  border: 1px solid #dadada;
+  padding: 10px;
+  background: #F8F8F8;
+  box-sizing: border-box;
+  box-shadow: inset 0px 0px 0px 1px white;
+}
+/* line 27, ass402D.tmp.scss */
+form .form-group input:focus, form div input:focus {
+  border-color: #ACACAC;
+  outline: 0;
+}
+/* line 31, ass402D.tmp.scss */
+form .form-group input[type="checkbox"], form div input[type="checkbox"] {
+  border: none;
+  text-align: left;
+  box-shadow: none;
+  width: initial;
+}
+/* line 39, ass402D.tmp.scss */
+form .form-group + .form-group {
+  margin-top: 10px;
+}

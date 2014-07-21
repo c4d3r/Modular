@@ -1,0 +1,28 @@
+form fieldset {
+  margin: 0;
+  border: none; }
+form .form-group {
+  margin: 0;
+  padding: 0;
+  display: block; }
+  form .form-group label {
+    display: block;
+    font-size: 11pt; }
+  form .form-group input {
+    display: block;
+    width: 100%;
+    border: 1px solid #dadada;
+    padding: 10px;
+    background: #F8F8F8;
+    box-sizing: border-box;
+    box-shadow: inset 0px 0px 0px 1px white; }
+  form .form-group input:focus {
+    border-color: #ACACAC;
+    outline: 0; }
+  form .form-group input[type="checkbox"] {
+    border: none;
+    text-align: left;
+    box-shadow: none;
+    width: initial; }
+form .form-group + .form-group {
+  margin-top: 10px; }

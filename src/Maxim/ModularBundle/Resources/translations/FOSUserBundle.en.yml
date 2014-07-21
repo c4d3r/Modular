@@ -1,0 +1,5 @@
+form:
+    password_confirmation: "Repeat password"
+
+registration:
+    submit: "Register"

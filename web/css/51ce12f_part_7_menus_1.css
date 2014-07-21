@@ -1,0 +1,47 @@
+/* line 1, assB5B3.tmp.scss */
+.menu {
+  padding: 0;
+  margin: 0;
+}
+/* line 4, assB5B3.tmp.scss */
+.menu li {
+  float: left;
+  list-style: none;
+}
+/* line 8, assB5B3.tmp.scss */
+.menu li a {
+  float: left;
+  display: inline-block;
+}
+
+/* line 17, assB5B3.tmp.scss */
+.menu-blocks li {
+  float: left;
+  margin-bottom: 5px;
+}
+/* line 21, assB5B3.tmp.scss */
+.menu-blocks li a {
+  display: inline-block;
+  padding: 20px;
+  border: 2px solid #D5D5D5;
+  border-radius: 5px;
+  text-align: center;
+  width: 115px;
+  height: 115px;
+  box-sizing: border-box;
+  display: table-cell;
+  vertical-align: middle;
+  color: #858585;
+  background: #e7e7e7;
+  transition: background-color .3s ease-in-out;
+  -moz-transition: background-color .3s ease-in-out;
+  -webkit-transition: background-color .3s ease-in-out;
+  -o-transition: background-color .3s ease-in-out;
+}
+/* line 40, assB5B3.tmp.scss */
+.menu-blocks li a:hover {
+  background-color: rgba(0, 163, 255, 0.3);
+  border-color: #00a3ff;
+  color: #FFFFFF;
+  text-shadow: 1px 1px #899199;
+}

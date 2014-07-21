@@ -1,0 +1,31 @@
+{{ form_start(serverForm, {'class': 'form ou-server-edit'}) }}
+    {{ form_errors(serverForm) }}
+    <fieldset>
+        <div class="form-group">
+            {{ form_row(serverForm.name) }}
+        </div>
+
+        {% if serverForm.hub is defined %}
+            <div class="form-group">
+                {{ form_row(serverForm.hub) }}
+            </div>
+        {% endif %}
+
+        {% if serverForm.ip is defined and serverForm.port is defined %}
+            <div id="ou-server-nohub">
+                <div class="form-group left" style="width:75%;">
+                    {{ form_row(serverForm.ip) }}
+                </div>
+
+                <div class="form-group right" style="padding-left:5px;width:25%;box-sizing: border-box;margin-top:0;">
+                    {{ form_row(serverForm.port) }}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            <button type="submit" class="btn">Save changes</button>
+        </div>
+    </fieldset>
+
+{{ form_end(serverForm) }}
